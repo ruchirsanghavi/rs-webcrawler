@@ -43,10 +43,7 @@ Once completed, to view the extracted links, simply view the the results.json fi
 
 The results are in the form of nested JSON with child web pages with links and their relevant types.
 
-
-An example output is available in the project used on the URL "http://wiprodigital.com", called:
-
-    [example-results.json](example-results.json)
+An example output is available in the project used on the URL "http://wiprodigital.com", called [example-results.json](example-results.json)
 
 
 ### Configure Logging
