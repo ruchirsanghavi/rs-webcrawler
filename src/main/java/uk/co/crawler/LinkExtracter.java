@@ -35,22 +35,25 @@ public class LinkExtracter implements ILinkExtracter {
     @Autowired
     private ILinkAttributeProvider linkAttributeProvider;
 
-    private final Set<String> visitedPages = new HashSet<>();
+    private final Set<IWebPage> visitedPages = new HashSet<>();
 
     @Override
     public List<IWebPage> extract(final IWebPage webPage) throws IOException {
-        // If we have already visited this page before, then return empty list.
-        if (this.visitedPages.contains(webPage.getUrl().toString())) {
+        // If we have already visited this page before, then return null.
+        if (this.visitedPages.contains(webPage)) {
             return null;
         }
 
-        LOGGER.trace("Extracting: " + webPage.getUrl());
-        this.visitedPages.add(webPage.getUrl().toString());
+        // Record this page as being visited
+        this.visitedPages.add(webPage);
 
+        // Start extraction of this page
+        final String navigableUrl = webPage.deriveNavigableUrl();
+        LOGGER.trace("Extracting: " + navigableUrl);
         final ArrayList<IWebPage> result = new ArrayList<>();
         final Document document;
         try {
-            document = Jsoup.connect(webPage.getUrl().toString()).get();
+            document = Jsoup.connect(navigableUrl).get();
             final List<ILinkAttribute> allAttributes = this.linkAttributeProvider.getAllAttributes();
             for (final ILinkAttribute linkAttribute : allAttributes) {
                 final Elements elements = document.select(linkAttribute.selector());
@@ -66,7 +69,7 @@ public class LinkExtracter implements ILinkExtracter {
                 }
             }
         } catch (final Exception e) {
-            LOGGER.error("Unable to parse URL: " + webPage.getUrl());
+            LOGGER.error("Unable to parse URL: " + navigableUrl);
         }
 
         return result;

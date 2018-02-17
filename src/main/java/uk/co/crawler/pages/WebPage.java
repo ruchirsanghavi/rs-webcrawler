@@ -20,8 +20,20 @@ public class WebPage implements IWebPage {
     }
 
     @Override
-    public URL getUrl() {
+    public URL getFullUrl() {
         return this.url;
+    }
+
+    @Override
+    public String deriveNavigableUrl() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(this.url.getProtocol());
+        builder.append("://");
+        builder.append(this.url.getHost());
+        if (null != this.url.getPath() && !this.url.getPath().isEmpty()) {
+            builder.append(this.url.getPath());
+        }
+        return builder.toString();
     }
 
     @Override
@@ -39,6 +51,20 @@ public class WebPage implements IWebPage {
 
     @Override
     public boolean isSameDomain(final IWebPage webPage) {
-        return this.url.getHost().equals(webPage.getUrl().getHost());
+        return this.url.getHost().equals(webPage.getFullUrl().getHost());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof WebPage) {
+            final WebPage other = (WebPage) obj;
+            return deriveNavigableUrl().equals(other.deriveNavigableUrl());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return deriveNavigableUrl().hashCode();
     }
 }

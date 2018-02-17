@@ -11,11 +11,18 @@ import java.util.List;
 public interface IWebPage {
 
     /**
-     * Get the URL of this web page.
+     * Get the full URL of this web page.
      *
      * @return - URL of this web page.
      */
-    URL getUrl();
+    URL getFullUrl();
+
+    /**
+     * Derives a clean navigable version of the {@link IWebPage#getFullUrl()} as String
+     *
+     * @return - a clean string representation of the full URL for this web page that should be navigable.
+     */
+    String deriveNavigableUrl();
 
     /**
      * Get all child web pages from this web page.
