@@ -34,8 +34,8 @@ e.g.
     
     java -Dhttp.proxyHost=webproxy.mycorp.com -Dhttp.proxyPort=8080 -jar target/rs-webcrawler-1.0-SNAPSHOT.jar http://wiprodigital.com
 
-    Note: If you are connecting to an HTTPS site, then use "https" instead of "http" above, e.g. "https.proxyHost"
-    For more information see: https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
+ Note: If you are connecting to an HTTPS site, then use "https" instead of "http" above, e.g. "https.proxyHost"
+ For more information see: https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
 ## Output
 Once the program is running, it will TRACE out all the links that it is extracting, along with any it failed to do.
@@ -46,11 +46,11 @@ The results are in the form of nested JSON with child web pages with links and t
 
 An example output is available in the project used on the URL "http://wiprodigital.com", called:
 
-    example-results.json
+    [example-results.json](example-results.json)
 
 
 ### Configure Logging
-To configure logging levels (default set to TRACE), modify the level in application.yml file.
+To configure logging levels (default set to TRACE), modify the level in [application.yml](application.yml) file.
 
 
 ## NOTES
