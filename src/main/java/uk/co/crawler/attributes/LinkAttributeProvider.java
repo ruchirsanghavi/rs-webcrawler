@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * A provider for different types of {@link ILinkAttribute}s.
+ *
  * @author rsanghavi.
  */
 @Component
@@ -18,6 +20,7 @@ public class LinkAttributeProvider implements ILinkAttributeProvider {
         final ATagAttribute tagAttribute = new ATagAttribute();
         final ImageAttribute imageAttribute = new ImageAttribute();
         final LinkAttribute linkAttribute = new LinkAttribute();
-        return Arrays.asList(tagAttribute, imageAttribute, linkAttribute);
+        final ScriptAttribute scriptAttribute = new ScriptAttribute();
+        return Arrays.asList(tagAttribute, imageAttribute, linkAttribute, scriptAttribute);
     }
 }

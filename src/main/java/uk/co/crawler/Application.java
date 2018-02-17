@@ -1,9 +1,9 @@
 package uk.co.crawler;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
@@ -13,16 +13,18 @@ import org.springframework.context.annotation.Bean;
  * @author rsanghavi
  */
 @SpringBootApplication
-public class Application extends SpringBootServletInitializer {
+public class Application {
 
     /**
      * Main entry point to application. Uses default SpringApplication settings.
-     * This is executed when the war file is executed.
      *
      * @param args program arguments
      */
     public static void main(final String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication application = new SpringApplication(Application.class);
+        application.setWebEnvironment(false);
+        application.setBannerMode(Banner.Mode.OFF);
+        application.run(args);
     }
 
     @Bean

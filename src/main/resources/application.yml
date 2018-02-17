@@ -7,6 +7,5 @@ info:
 logging:
   file: results.log
   level:
-    uk.co.crawler:
-      Runner: TRACE
+    uk.co.crawler: TRACE
 

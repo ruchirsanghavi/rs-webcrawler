@@ -3,15 +3,15 @@ package uk.co.crawler.attributes;
 import uk.co.crawler.interfaces.ILinkAttribute;
 
 /**
- * Refers to the <img> attribute in HTML pages.
+ * Refers to the <script> attribute in HTML pages.
  *
- * @author rsanghavi.
+ * @author rsanghavi
  */
-public class ImageAttribute implements ILinkAttribute {
+public class ScriptAttribute implements ILinkAttribute {
 
     @Override
     public String selector() {
-        return "img[src]";
+        return "script[src]";
     }
 
     @Override
@@ -21,6 +21,6 @@ public class ImageAttribute implements ILinkAttribute {
 
     @Override
     public EAttributeType type() {
-        return EAttributeType.MEDIA;
+        return EAttributeType.IMPORT;
     }
 }
