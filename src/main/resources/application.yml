@@ -1,0 +1,12 @@
+info:
+  app:
+    name: Spring Boot Web Crawler
+    description: This is a command line spring boot application which can crawl through a given website.
+    version: 1.0.0.0
+
+logging:
+  file: results.log
+  level:
+    uk.co.crawler:
+      Runner: TRACE
+
