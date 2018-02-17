@@ -12,6 +12,7 @@ import uk.co.crawler.attributes.EAttributeType;
 import uk.co.crawler.interfaces.ILinkAttribute;
 import uk.co.crawler.interfaces.ILinkAttributeProvider;
 import uk.co.crawler.interfaces.ILinkExtracter;
+import uk.co.crawler.interfaces.IWebPage;
 import uk.co.crawler.pages.WebPage;
 
 import java.io.IOException;
@@ -37,37 +38,35 @@ public class LinkExtracter implements ILinkExtracter {
     private final Set<String> visitedPages = new HashSet<>();
 
     @Override
-    public List<WebPage> extract(final String url) throws IOException {
-        // If we have already visited this page before, then return.
-        if (this.visitedPages.contains(url)) {
+    public List<IWebPage> extract(final IWebPage webPage) throws IOException {
+        // If we have already visited this page before, then return empty list.
+        if (this.visitedPages.contains(webPage.getUrl().toString())) {
             return null;
         }
 
-        LOGGER.trace("Extracting: " + url);
-        this.visitedPages.add(url);
+        LOGGER.trace("Extracting: " + webPage.getUrl());
+        this.visitedPages.add(webPage.getUrl().toString());
 
-        final ArrayList<WebPage> result = new ArrayList<>();
+        final ArrayList<IWebPage> result = new ArrayList<>();
         final Document document;
         try {
-            document = Jsoup.connect(url).get();
+            document = Jsoup.connect(webPage.getUrl().toString()).get();
             final List<ILinkAttribute> allAttributes = this.linkAttributeProvider.getAllAttributes();
             for (final ILinkAttribute linkAttribute : allAttributes) {
                 final Elements elements = document.select(linkAttribute.selector());
                 for (final Element element : elements) {
-                    final String attr = element.attr(linkAttribute.attribute());
-                    final URL attributeUrl = new URL(attr);
-                    final WebPage webPage;
-                    final URL pageUrl = new URL(url);
-                    if (EAttributeType.LINK.equals(linkAttribute.type()) && pageUrl.getHost().equals(attributeUrl.getHost())) {
-                        webPage = new WebPage(attributeUrl, extract(attr));
-                    } else {
-                        webPage = new WebPage(attributeUrl, null);
+                    final IWebPage childWebPage = new WebPage(new URL(element.attr(linkAttribute.attribute())));
+                    if (EAttributeType.LINK.equals(linkAttribute.type()) && webPage.isSameDomain(childWebPage)) {
+                        final List<IWebPage> childWebPages = extract(childWebPage);
+                        if (null != childWebPages) {
+                            webPage.addChildPages(childWebPages);
+                        }
                     }
-                    result.add(webPage);
+                    result.add(childWebPage);
                 }
             }
         } catch (final Exception e) {
-            LOGGER.error("Unable to parse URL: " + url);
+            LOGGER.error("Unable to parse URL: " + webPage.getUrl());
         }
 
         return result;

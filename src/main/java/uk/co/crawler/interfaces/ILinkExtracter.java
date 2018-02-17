@@ -15,10 +15,10 @@ public interface ILinkExtracter {
     /**
      * Extracts all relevant links that are found on the URL web page, in the form of a list of {@link WebPage}.
      *
-     * @param url - the URL to extract.
+     * @param webpage - the web page to extract.
      * @return list of web pages, which contain details of links within each web page.
      * @throws IOException - may throw exception if a URL is no reachable or invalid.
      */
-    List<WebPage> extract(final String url) throws IOException;
+    List<IWebPage> extract(final IWebPage webpage) throws IOException;
 
 }
