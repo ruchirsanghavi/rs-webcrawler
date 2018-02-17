@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
+import uk.co.crawler.attributes.EAttributeType;
 import uk.co.crawler.interfaces.ILinkExtracter;
 import uk.co.crawler.interfaces.IWebPage;
 import uk.co.crawler.pages.WebPage;
@@ -16,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * A command line runner to to extract links from a website.
+ * A command line runner to extract links from a website.
  *
  * @author rsanghavi.
  */
@@ -34,8 +35,8 @@ public class Runner implements CommandLineRunner {
     public void run(final String... strings) throws Exception {
 
         try {
-            final String url = "http://wiprodigital.com";
-            final IWebPage startPage = new WebPage(new URL(url));
+            final String url = strings[0];
+            final IWebPage startPage = new WebPage(new URL(url), EAttributeType.LINK);
             final List<IWebPage> extract = this.extracter.extract(startPage);
             writeResults(extract);
         } finally {

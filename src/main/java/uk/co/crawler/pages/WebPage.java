@@ -1,5 +1,6 @@
 package uk.co.crawler.pages;
 
+import uk.co.crawler.attributes.EAttributeType;
 import uk.co.crawler.interfaces.IWebPage;
 
 import java.net.URL;
@@ -12,10 +13,12 @@ import java.util.List;
 public class WebPage implements IWebPage {
 
     private final URL url;
+    private final EAttributeType attributeType;
     private List<IWebPage> childWebPages;
 
-    public WebPage(final URL url) {
+    public WebPage(final URL url, final EAttributeType attributeType) {
         this.url = url;
+        this.attributeType = attributeType;
         this.childWebPages = null;
     }
 

@@ -58,7 +58,7 @@ public class LinkExtracter implements ILinkExtracter {
             for (final ILinkAttribute linkAttribute : allAttributes) {
                 final Elements elements = document.select(linkAttribute.selector());
                 for (final Element element : elements) {
-                    final IWebPage childWebPage = new WebPage(new URL(element.attr(linkAttribute.attribute())));
+                    final IWebPage childWebPage = new WebPage(new URL(element.attr(linkAttribute.attribute())), linkAttribute.type());
                     if (EAttributeType.LINK.equals(linkAttribute.type()) && webPage.isSameDomain(childWebPage)) {
                         final List<IWebPage> childWebPages = extract(childWebPage);
                         if (null != childWebPages) {
