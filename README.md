@@ -47,7 +47,7 @@ An example output is available in the project used on the URL "http://wiprodigit
 
 
 ### Configure Logging
-To configure logging levels (default set to TRACE), modify the level in [application.yml](application.yml) file.
+To configure logging levels (default set to TRACE), modify the level in [application.yml](https://github.com/ruchirsanghavi/rs-webcrawler/tree/master/src/main/resources/application.yml) file.
 
 
 ## NOTES
