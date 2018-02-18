@@ -52,11 +52,19 @@ To configure logging levels (default set to TRACE), modify the level in [applica
 
 ## NOTES
 * At its heart, it's a basic recursion algorithm, taking into account web pages that have already been visited, and ignoring any pages that are unreachable.
-* Only <a> links on a given page are visited, other types are assumed to be imports or media.
+* If a web page has already been visited before in the site map, then only the link is mentioned rather than crawling the page again.
+* Only <a> links on a given page are visited, other types are assumed to be imports or media i.e. they are listed in the output but not crawled through.
 * A 3rd party library called JSOUP is used to navigate the HTML documents (https://jsoup.org/)
 
 ## FUTURE
-* The web crawler can be multi-threaded, using work managers, or other thread pools.
-* More unit testing
+* More testing (perhaps even use mutation testing)
 * As Spring is used in the application, there is potential for Spring Integration Tests to be used.
 * Improve the error handling when invalid URLs are passed into the application, or when a page has links to invalid URLs.
+* Web crawler can be exposed as a RESTful service as Spring Boot is used.
+* A web based UI can be added that allows for input and display of results.
+
+## SCALABILITY
+* Scalability needs to be addressed - current design means entire site map is held in memory, for large sites, this will cause the application to run out of heap space.
+* The results need to be flushed periodically to an output, as in the event that the program crashes, results are lost.
+* The sites that are visited are currently stored as domain objects, instead, checksums can be kept and stored in a database of some sort.
+* To improve scalability and performance the web crawler can be multi-threaded, using work managers, or other thread pools, e.g. [TaskExecutor](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/task/TaskExecutor.html).

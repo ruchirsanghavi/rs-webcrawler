@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * A Web Page domain object which allows for storage of the URL and any child pages that it contains.
+ *
+ * @author rsanghavi
  */
 public class WebPage implements IWebPage {
 
