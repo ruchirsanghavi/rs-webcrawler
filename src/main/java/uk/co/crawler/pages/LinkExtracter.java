@@ -30,6 +30,7 @@ public class LinkExtracter implements ILinkExtracter {
 
         // If we have already visited this page before, then return null.
         if (this.visitedPages.contains(webPage)) {
+            // Should this be null or an empty list?
             return null;
         }
 
