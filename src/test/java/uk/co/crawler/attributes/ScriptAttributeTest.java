@@ -21,7 +21,7 @@ public class ScriptAttributeTest {
     @Test
     public void testType() {
         final ScriptAttribute attribute = new ScriptAttribute();
-        assertThat(attribute.type()).isEqualTo(EAttributeType.IMPORT);
+        assertThat(attribute.type()).isEqualTo(ELinkType.IMPORT);
     }
 
 }

@@ -20,7 +20,7 @@ public class ImageAttribute implements ILinkAttribute {
     }
 
     @Override
-    public EAttributeType type() {
-        return EAttributeType.MEDIA;
+    public ELinkType type() {
+        return ELinkType.MEDIA;
     }
 }

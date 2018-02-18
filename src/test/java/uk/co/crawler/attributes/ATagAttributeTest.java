@@ -1,6 +1,5 @@
 package uk.co.crawler.attributes;
 
-import org.assertj.core.api.Assert;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +21,7 @@ public class ATagAttributeTest {
     @Test
     public void testType() {
         final ATagAttribute attribute = new ATagAttribute();
-        assertThat(attribute.type()).isEqualTo(EAttributeType.LINK);
+        assertThat(attribute.type()).isEqualTo(ELinkType.LINK);
     }
 
 }

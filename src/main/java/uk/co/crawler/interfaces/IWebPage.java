@@ -1,5 +1,7 @@
 package uk.co.crawler.interfaces;
 
+import uk.co.crawler.attributes.ELinkType;
+
 import java.net.URL;
 import java.util.List;
 
@@ -30,6 +32,12 @@ public interface IWebPage {
      * @return - a list of child pages
      */
     List<IWebPage> getChildWebPages();
+
+    /**
+     * Gets the {@link ELinkType} of this web page.
+     * @return - the type of link this web page is.
+     */
+    ELinkType getLinkType();
 
     /**
      * Add any additional web pages as children of this web page.

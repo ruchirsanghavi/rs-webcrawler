@@ -1,6 +1,6 @@
 package uk.co.crawler.interfaces;
 
-import uk.co.crawler.attributes.EAttributeType;
+import uk.co.crawler.attributes.ELinkType;
 
 /**
  * An interface which describes the characteristics of a link attribute.
@@ -24,10 +24,10 @@ public interface ILinkAttribute {
     String attribute();
 
     /**
-     * Describes the link attribute type of this link. See {@link EAttributeType} for further information.
+     * Describes the link type of this attribute. See {@link ELinkType} for further information.
      *
-     * @return an attribute type
+     * @return the type of this link
      */
-    EAttributeType type();
+    ELinkType type();
 
 }

@@ -21,7 +21,7 @@ public class LinkAttributeTest {
     @Test
     public void testType() {
         final LinkAttribute attribute = new LinkAttribute();
-        assertThat(attribute.type()).isEqualTo(EAttributeType.IMPORT);
+        assertThat(attribute.type()).isEqualTo(ELinkType.IMPORT);
     }
 
 }

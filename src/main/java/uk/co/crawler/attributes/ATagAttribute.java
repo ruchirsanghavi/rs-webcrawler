@@ -20,7 +20,7 @@ public class ATagAttribute implements ILinkAttribute {
     }
 
     @Override
-    public EAttributeType type() {
-        return EAttributeType.LINK;
+    public ELinkType type() {
+        return ELinkType.LINK;
     }
 }

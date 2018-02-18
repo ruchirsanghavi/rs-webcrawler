@@ -21,7 +21,7 @@ public class ImageAttributeTest {
     @Test
     public void testType() {
         final ImageAttribute attribute = new ImageAttribute();
-        assertThat(attribute.type()).isEqualTo(EAttributeType.MEDIA);
+        assertThat(attribute.type()).isEqualTo(ELinkType.MEDIA);
     }
 
 }

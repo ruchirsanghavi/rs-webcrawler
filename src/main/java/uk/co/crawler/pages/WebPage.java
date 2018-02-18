@@ -1,6 +1,6 @@
 package uk.co.crawler.pages;
 
-import uk.co.crawler.attributes.EAttributeType;
+import uk.co.crawler.attributes.ELinkType;
 import uk.co.crawler.interfaces.IWebPage;
 
 import java.net.URL;
@@ -13,18 +13,23 @@ import java.util.List;
 public class WebPage implements IWebPage {
 
     private final URL url;
-    private final EAttributeType attributeType;
+    private final ELinkType linkType;
     private List<IWebPage> childWebPages;
 
-    public WebPage(final URL url, final EAttributeType attributeType) {
+    public WebPage(final URL url, final ELinkType linkType) {
         this.url = url;
-        this.attributeType = attributeType;
+        this.linkType = linkType;
         this.childWebPages = null;
     }
 
     @Override
     public URL getFullUrl() {
         return this.url;
+    }
+
+    @Override
+    public ELinkType getLinkType() {
+        return this.linkType;
     }
 
     @Override
@@ -58,7 +63,7 @@ public class WebPage implements IWebPage {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj instanceof WebPage) {
             final WebPage other = (WebPage) obj;
             return deriveNavigableUrl().equals(other.deriveNavigableUrl());

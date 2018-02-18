@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.co.crawler.attributes.EAttributeType;
+import uk.co.crawler.attributes.ELinkType;
 import uk.co.crawler.interfaces.ILinkAttribute;
 import uk.co.crawler.interfaces.ILinkAttributeProvider;
 import uk.co.crawler.interfaces.ILinkExtracter;
@@ -59,7 +59,7 @@ public class LinkExtracter implements ILinkExtracter {
                 final Elements elements = document.select(linkAttribute.selector());
                 for (final Element element : elements) {
                     final IWebPage childWebPage = new WebPage(new URL(element.attr(linkAttribute.attribute())), linkAttribute.type());
-                    if (EAttributeType.LINK.equals(linkAttribute.type()) && webPage.isSameDomain(childWebPage)) {
+                    if (ELinkType.LINK.equals(linkAttribute.type()) && webPage.isSameDomain(childWebPage)) {
                         final List<IWebPage> childWebPages = extract(childWebPage);
                         if (null != childWebPages) {
                             webPage.addChildPages(childWebPages);

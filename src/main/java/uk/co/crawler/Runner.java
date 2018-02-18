@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
-import uk.co.crawler.attributes.EAttributeType;
+import uk.co.crawler.attributes.ELinkType;
 import uk.co.crawler.interfaces.ILinkExtracter;
 import uk.co.crawler.interfaces.IWebPage;
 import uk.co.crawler.pages.WebPage;
@@ -36,7 +36,7 @@ public class Runner implements CommandLineRunner {
 
         try {
             final String url = strings[0];
-            final IWebPage startPage = new WebPage(new URL(url), EAttributeType.LINK);
+            final IWebPage startPage = new WebPage(new URL(url), ELinkType.LINK);
             final List<IWebPage> extract = this.extracter.extract(startPage);
             writeResults(extract);
         } finally {

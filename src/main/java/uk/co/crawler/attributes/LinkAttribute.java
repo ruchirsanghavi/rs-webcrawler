@@ -20,7 +20,7 @@ public class LinkAttribute implements ILinkAttribute{
     }
 
     @Override
-    public EAttributeType type() {
-        return EAttributeType.IMPORT;
+    public ELinkType type() {
+        return ELinkType.IMPORT;
     }
 }
