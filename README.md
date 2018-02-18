@@ -59,3 +59,4 @@ To configure logging levels (default set to TRACE), modify the level in [applica
 * The web crawler can be multi-threaded, using work managers, or other thread pools.
 * More unit testing
 * As Spring is used in the application, there is potential for Spring Integration Tests to be used.
+* Improve the error handling when invalid URLs are passed into the application, or when a page has links to invalid URLs.
