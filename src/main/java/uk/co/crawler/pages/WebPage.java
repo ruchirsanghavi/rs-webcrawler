@@ -51,10 +51,12 @@ public class WebPage implements IWebPage {
 
     @Override
     public void addChildPages(final List<IWebPage> childWebPages) {
-        if (this.childWebPages == null) {
-            this.childWebPages = new ArrayList<>();
+        if (childWebPages != null && !childWebPages.isEmpty()) {
+            if (this.childWebPages == null) {
+                this.childWebPages = new ArrayList<>();
+            }
+            this.childWebPages.addAll(childWebPages);
         }
-        this.childWebPages.addAll(childWebPages);
     }
 
     @Override

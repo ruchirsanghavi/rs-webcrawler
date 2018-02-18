@@ -2,6 +2,8 @@ package uk.co.crawler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -22,6 +24,8 @@ import java.util.List;
  * @author rsanghavi.
  */
 public class Runner implements CommandLineRunner {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Runner.class);
 
     private static final String RESULTS_TXT = "results.json";
 
@@ -48,6 +52,7 @@ public class Runner implements CommandLineRunner {
         final Gson gson = new GsonBuilder().setPrettyPrinting().create();
         final String results = gson.toJson(links);
         Files.write(Paths.get(RESULTS_TXT), results.getBytes());
+        LOGGER.warn("Results successfully written out to " + Paths.get(RESULTS_TXT).toRealPath());
     }
 
 }

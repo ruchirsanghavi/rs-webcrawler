@@ -2,7 +2,6 @@ package uk.co.crawler.interfaces;
 
 import uk.co.crawler.pages.WebPage;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,8 +16,7 @@ public interface ILinkExtracter {
      *
      * @param webpage - the web page to extract.
      * @return list of web pages, which contain details of links within each web page.
-     * @throws IOException - may throw exception if a URL is no reachable or invalid.
      */
-    List<IWebPage> extract(final IWebPage webpage) throws IOException;
+    List<IWebPage> extract(final IWebPage webpage);
 
 }
